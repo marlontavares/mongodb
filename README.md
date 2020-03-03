@@ -55,3 +55,39 @@ db.getCollection("pets").find(
         "species": "Cachorro"
     }
 );
+
+
+EXERCICIO 2
+*****************************************************************************
+
+Liste/Conte todas as pessoas que tem exatamente 99 anos. Você pode
+usar um count para indicar a quantidade.
+
+db.getCollection("italians").count(
+    { 
+        "age" : 99.0
+    }
+);
+
+
+
+Identifique quantas pessoas são elegíveis atendimento prioritário
+(pessoas com mais de 65 anos)
+db.getCollection("italians").count(
+    { 
+        "age" : {$gte :65}
+    }
+);
+
+Identifique todos os jovens (pessoas entre 12 a 18 anos).
+db.getCollection("italians").find(
+    { 
+        "age" : {$gte :12, $lt :18}
+    }
+);
+
+
+
+
+
+
