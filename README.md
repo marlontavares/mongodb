@@ -4,19 +4,22 @@ EXERCICIO 1
 ***************************************************************************
 
 Adicione outro Peixe e um Hamster com nome Frodo
+<br />
 use petshop
+<br />
 db.pets.insert({name:"Frodo", species:"Hamster"})
+<br />
 db.pets.insert({name:"Frodo", species:"Peixe"})
+<br /><br />
 
-
-Faça uma contagem dos pets na coleção
+Faça uma contagem dos pets na coleção<br />
 db.getCollection("pets").count({});
-
-Retorne apenas um elemento o método prático possível
+<br /><br />
+Retorne apenas um elemento o método prático possível<br />
 db.getCollection("pets").findOne({});
+<br /><br />
 
-
-Identifique o ID para o Gato Kilha.
+Identifique o ID para o Gato Kilha.<br />
 db.getCollection("pets").find(
     { 
         "name" : "Kilha"
