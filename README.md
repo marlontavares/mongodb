@@ -174,16 +174,45 @@ db.italians.aggregate(
 );
 <br /><br />
 
+Quais são as 5 pessoas mais velhas com sobrenome Rossi?<br />
+db.italians.find(
+    {surname: 'Rossi'}
+).sort({age: -1}).limit(5);
+<br /><br />
+
+Crie um italiano que tenha um leão como animal de estimação. Associe um nome e idade ao bichano<br />
+db.italians.insert({
+        "firstname" : "Ezio",
+        "surname" : "Auditore",
+        "username" : "user7856",
+        "age" : 33,
+        "email" : "ezio@ubisoft.com",
+        "bloodType" : "AB+",
+        "id_num" : "256485232144",
+        "registerDate" : ISODate("2020-03-07T19:00:00.123Z"),
+        "ticketNumber" : 9955,
+        "jobs" : ["Assassino"],
+        "favFruits" : ["Tomate"],
+        "movies" : [
+                {
+                    "title" : "Assassin's Creed - 2016",
+                    "rating" : 5.7
+                }
+        ],
+        "lion" : { "name" : "altaïr", "age" : 1 }
+})
+<br /><br />
+
+Infelizmente o Leão comeu o italiano. Remova essa pessoa usando o Id.<br />
+/*encontra o _id*/<br />
+db.getCollection("italians").find({ "firstname": "Ezio" });<br />
+/*Apaga*/<br />
+db.italians.remove({_id: ObjectId("5e641cb2ec7197c22bae48e3")})
+<br /><br />
 
 
-
-
-
-
-
-
-
-
+EXERCICIO 3
+*****************************************************************************
 
 
 
