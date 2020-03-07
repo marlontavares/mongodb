@@ -213,9 +213,58 @@ db.italians.remove({_id: ObjectId("5e641cb2ec7197c22bae48e3")})
 
 EXERCICIO 3
 *****************************************************************************
+<br />
+Liste as ações com profit acima de 0.5 (limite a 10 o resultado)<br />
+db.stock.find(
+    {'Profit Margin' : {$gt:0.5}}
+).limit(10)
+<br /><br />
+
+Liste as ações com perdas (limite a 10 novamente)<br />
+db.stock.find(
+    {'Profit Margin' : {$lt:0.0}}
+).limit(10)
+<br /><br />
+
+Liste as 10 ações mais rentáveis<br />
+db.stock.find().sort(
+    {'Profit Margin':-1}
+).limit(10)
+
+<br /><br />
+
+Qual foi o setor mais rentável?<br />
+db.stock.aggregate([
+	{$group: {_id: "$Sector", profit: {$sum: "$Profit Margin"}}},
+	{$sort: { profit: -1 } }
+])
+<br /><br />
+
+Ordene as ações pelo profit e usando um cursor, liste as ações.<br />
+var i = db.stock.find({}).sort({'Profit Margin':-1});
+i.next();
+<br /><br />
+
+Agora liste apenas a empresa e seu respectivo resultado<br />
+db.stock.find(
+    {},
+    {_id:0, Company: 1, profit: 1}
+)
+<br /><br />
+
+Analise as ações. É uma bola de cristal na sua mão... Quais as três ações você investiria?<br />
+/* idem exercicio 3 - as mais rentaveis*/
+db.stock.find().sort(
+    {'Profit Margin':-1}
+).limit(3)
+<br /><br />
 
 
-
-
-
+Liste as ações agrupadas por setor<br />
+db.stock.aggregate(
+    [{$group: {_id:'$Sector', acoes:{$push:'$$ROOT'}}},
+     {$sort: {_id:1}}
+    ]
+)
+<br /><br />
 
